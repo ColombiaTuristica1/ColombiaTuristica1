@@ -25,6 +25,8 @@ header {
   height: 300px;
   width: 300px;
   border: 2px solid #00A8E8;
+  max-width: 100%;
+  height: auto;
 }
 
 .titulo {
@@ -33,11 +35,17 @@ header {
   padding: 20px;
   background-color: #F9D342;
   color: #2C3E50;
+  text-align: center;
+  margin-top: 20px;
+  flex: 1 1 100%;
 }
 
 /* Menú desplegable */
 .navbar {
   position: relative;
+  margin-top: 20px;
+  width: 100%;
+  text-align: right;
 }
 
 .menu-icon {
@@ -49,6 +57,7 @@ header {
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
+  margin-right: 20px;
 }
 
 #menu-toggle {
@@ -58,7 +67,7 @@ header {
 .menu {
   display: none;
   position: absolute;
-  right: 0;
+  right: 20px;
   top: 60px;
   background: white;
   border: 1px solid #00A8E8;
@@ -104,3 +113,54 @@ footer {
   border-top: 4px solid #00A8E8;
   border-radius: 10px;
 }
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .logo img {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .titulo {
+    font-size: 36px;
+    padding: 15px;
+  }
+
+  .descripcion {
+    padding: 30px;
+    font-size: 24px;
+  }
+
+  .menu {
+    width: 100%;
+    position: static;
+    border: none;
+    box-shadow: none;
+  }
+
+  .navbar {
+    text-align: center;
+  }
+
+  .menu-icon {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 28px;
+  }
+
+  .descripcion {
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  footer {
+    font-size: 20px;
+    padding: 20px;
+  }
+}
+
