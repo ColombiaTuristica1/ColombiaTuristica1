@@ -13,51 +13,55 @@ body {
 /* Encabezado */
 header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   border-bottom: 4px solid #00A8E8;
   padding: 20px;
-  flex-wrap: wrap;
   background-color: #ffffff;
+  gap: 20px;
+}
+
+.logo {
+  flex: 1 1 200px;
+  display: flex;
+  justify-content: center;
 }
 
 .logo img {
-  height: 300px;
-  width: 300px;
-  border: 2px solid #00A8E8;
   max-width: 100%;
   height: auto;
+  width: 200px;
+  border: 2px solid #00A8E8;
 }
 
 .titulo {
-  font-size: 64px;
+  flex: 2 1 300px;
+  font-size: 48px;
   border: 2px solid #2ECC71;
-  padding: 20px;
+  padding: 15px;
   background-color: #F9D342;
   color: #2C3E50;
   text-align: center;
-  margin-top: 20px;
-  flex: 1 1 100%;
 }
 
 /* Menú desplegable */
 .navbar {
+  flex: 1 1 100%;
   position: relative;
-  margin-top: 20px;
-  width: 100%;
-  text-align: right;
+  text-align: center;
 }
 
 .menu-icon {
   font-size: 30px;
   cursor: pointer;
-  display: block;
   user-select: none;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
-  margin-right: 20px;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 #menu-toggle {
@@ -75,15 +79,21 @@ header {
   padding: 10px;
   width: 150px;
   z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .menu li {
-  padding: 5px 0;
+  padding: 10px 0;
 }
 
 .menu a {
   text-decoration: none;
   color: #2C3E50;
+  transition: color 0.2s ease;
+}
+
+.menu a:hover {
+  color: #00A8E8;
 }
 
 #menu-toggle:checked + .menu-icon + .menu {
@@ -93,58 +103,74 @@ header {
 /* Contenido principal */
 .descripcion {
   margin: 20px;
-  padding: 60px;
+  padding: 40px;
   border: 2px solid #2ECC71;
   background-color: white;
   text-align: justify;
-  font-size: 40px;
+  font-size: 24px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
 }
 
 /* Pie de página */
 footer {
   text-align: center;
   margin: 20px;
-  padding: 35px;
+  padding: 25px;
   background-color: #2C3E50;
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   border-top: 4px solid #00A8E8;
   border-radius: 10px;
 }
 
-/* ======= RESPONSIVE ======= */
+/* ========= RESPONSIVE ========= */
+@media (min-width: 992px) {
+  .titulo {
+    font-size: 64px;
+  }
+
+  .descripcion {
+    font-size: 28px;
+  }
+
+  footer {
+    font-size: 24px;
+  }
+}
+
 @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .logo img {
-    width: 200px;
-    height: auto;
-    margin: 0 auto;
+    width: 150px;
   }
 
   .titulo {
     font-size: 36px;
-    padding: 15px;
+    padding: 10px;
+    width: 100%;
   }
 
   .descripcion {
+    font-size: 20px;
     padding: 30px;
-    font-size: 24px;
   }
 
   .menu {
-    width: 100%;
     position: static;
+    width: 100%;
+    margin-top: 10px;
     border: none;
     box-shadow: none;
   }
 
-  .navbar {
-    text-align: center;
-  }
-
-  .menu-icon {
-    margin: 0 auto;
+  .menu li {
+    padding: 8px 0;
   }
 }
 
@@ -154,13 +180,16 @@ footer {
   }
 
   .descripcion {
-    font-size: 20px;
+    font-size: 18px;
     padding: 20px;
   }
 
   footer {
-    font-size: 20px;
-    padding: 20px;
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .menu-icon {
+    font-size: 26px;
   }
 }
-
