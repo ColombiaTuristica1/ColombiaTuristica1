@@ -8,56 +8,47 @@ body {
   font-family: Arial, sans-serif;
   background: #F4F4F4;
   color: #2C3E50;
-  line-height: 1.6;
 }
 
-/* ENCABEZADO */
+/* Encabezado */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  background-color: #ffffff;
   border-bottom: 4px solid #00A8E8;
+  padding: 20px;
   flex-wrap: wrap;
+  background-color: #ffffff;
 }
 
 .logo img {
-  height: 100px;
-  width: auto;
+  height: 300px;
+  width: 300px;
   border: 2px solid #00A8E8;
-  border-radius: 10px;
 }
 
 .titulo {
-  flex: 1;
-  font-size: 48px;
-  font-weight: bold;
-  color: #2C3E50;
-  background-color: #F9D342;
-  padding: 15px 25px;
-  margin-left: 20px;
+  font-size: 64px;
   border: 2px solid #2ECC71;
-  border-radius: 10px;
-  text-align: center;
-  min-width: 250px;
+  padding: 20px;
+  background-color: #F9D342;
+  color: #2C3E50;
 }
 
-/* MENÚ */
+/* Menú desplegable */
 .navbar {
   position: relative;
-  margin-left: auto;
 }
 
 .menu-icon {
-  font-size: 32px;
+  font-size: 30px;
   cursor: pointer;
+  display: block;
   user-select: none;
-  padding: 10px 15px;
+  padding: 10px;
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
-  display: none; /* Oculto en desktop */
 }
 
 #menu-toggle {
@@ -65,111 +56,51 @@ header {
 }
 
 .menu {
-  display: flex;
-  gap: 15px;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  background: white;
+  border: 1px solid #00A8E8;
   list-style: none;
+  padding: 10px;
+  width: 150px;
+  z-index: 100;
 }
 
 .menu li {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .menu a {
   text-decoration: none;
   color: #2C3E50;
-  font-weight: bold;
-  transition: color 0.3s;
 }
 
-.menu a:hover {
-  color: #00A8E8;
+#menu-toggle:checked + .menu-icon + .menu {
+  display: block;
 }
 
-/* CONTENIDO PRINCIPAL */
+/* Contenido principal */
 .descripcion {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 40px;
-  background-color: white;
-  font-size: 20px;
-  text-align: justify;
+  margin: 20px;
+  padding: 60px;
   border: 2px solid #2ECC71;
+  background-color: white;
+  text-align: justify;
+  font-size: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* PIE DE PÁGINA */
+/* Pie de página */
 footer {
   text-align: center;
   margin: 20px;
-  padding: 25px;
+  padding: 35px;
   background-color: #2C3E50;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   border-top: 4px solid #00A8E8;
   border-radius: 10px;
-}
-
-/* RESPONSIVE TABLET + MÓVIL */
-@media (max-width: 992px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .titulo {
-    font-size: 36px;
-    width: 100%;
-    margin-left: 0;
-    margin-top: 15px;
-  }
-
-  .navbar {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    background-color: white;
-    border: 1px solid #00A8E8;
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-  }
-
-  #menu-toggle:checked + .menu-icon + .menu {
-    display: flex;
-  }
-
-  .menu li {
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  .descripcion {
-    font-size: 18px;
-    padding: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .titulo {
-    font-size: 28px;
-    padding: 10px;
-  }
-
-  .descripcion {
-    font-size: 16px;
-    padding: 20px;
-  }
-
-  footer {
-    font-size: 16px;
-  }
 }
