@@ -8,60 +8,56 @@ body {
   font-family: Arial, sans-serif;
   background: #F4F4F4;
   color: #2C3E50;
+  line-height: 1.6;
 }
 
-/* Encabezado */
+/* ENCABEZADO */
 header {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid #00A8E8;
-  padding: 20px;
+  padding: 20px 40px;
   background-color: #ffffff;
-  gap: 20px;
-}
-
-.logo {
-  flex: 1 1 200px;
-  display: flex;
-  justify-content: center;
+  border-bottom: 4px solid #00A8E8;
+  flex-wrap: wrap;
 }
 
 .logo img {
-  max-width: 100%;
-  height: auto;
-  width: 200px;
+  height: 100px;
+  width: auto;
   border: 2px solid #00A8E8;
+  border-radius: 10px;
 }
 
 .titulo {
-  flex: 2 1 300px;
+  flex: 1;
   font-size: 48px;
-  border: 2px solid #2ECC71;
-  padding: 15px;
-  background-color: #F9D342;
+  font-weight: bold;
   color: #2C3E50;
+  background-color: #F9D342;
+  padding: 15px 25px;
+  margin-left: 20px;
+  border: 2px solid #2ECC71;
+  border-radius: 10px;
   text-align: center;
+  min-width: 250px;
 }
 
-/* Menú desplegable */
+/* MENÚ */
 .navbar {
-  flex: 1 1 100%;
   position: relative;
-  text-align: center;
+  margin-left: auto;
 }
 
 .menu-icon {
-  font-size: 30px;
+  font-size: 32px;
   cursor: pointer;
   user-select: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
-  display: inline-block;
-  margin-top: 10px;
+  display: none; /* Oculto en desktop */
 }
 
 #menu-toggle {
@@ -69,17 +65,9 @@ header {
 }
 
 .menu {
-  display: none;
-  position: absolute;
-  right: 20px;
-  top: 60px;
-  background: white;
-  border: 1px solid #00A8E8;
+  display: flex;
+  gap: 15px;
   list-style: none;
-  padding: 10px;
-  width: 150px;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .menu li {
@@ -89,31 +77,28 @@ header {
 .menu a {
   text-decoration: none;
   color: #2C3E50;
-  transition: color 0.2s ease;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 .menu a:hover {
   color: #00A8E8;
 }
 
-#menu-toggle:checked + .menu-icon + .menu {
-  display: block;
-}
-
-/* Contenido principal */
+/* CONTENIDO PRINCIPAL */
 .descripcion {
-  margin: 20px;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 40px;
-  border: 2px solid #2ECC71;
   background-color: white;
+  font-size: 20px;
   text-align: justify;
-  font-size: 24px;
+  border: 2px solid #2ECC71;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  line-height: 1.6;
 }
 
-/* Pie de página */
+/* PIE DE PÁGINA */
 footer {
   text-align: center;
   margin: 20px;
@@ -125,71 +110,66 @@ footer {
   border-radius: 10px;
 }
 
-/* ========= RESPONSIVE ========= */
-@media (min-width: 992px) {
-  .titulo {
-    font-size: 64px;
-  }
-
-  .descripcion {
-    font-size: 28px;
-  }
-
-  footer {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 768px) {
+/* RESPONSIVE TABLET + MÓVIL */
+@media (max-width: 992px) {
   header {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .logo img {
-    width: 150px;
+    align-items: flex-start;
   }
 
   .titulo {
     font-size: 36px;
-    padding: 10px;
     width: 100%;
+    margin-left: 0;
+    margin-top: 15px;
   }
 
-  .descripcion {
-    font-size: 20px;
-    padding: 30px;
+  .navbar {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .menu-icon {
+    display: block;
   }
 
   .menu {
-    position: static;
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #00A8E8;
     width: 100%;
     margin-top: 10px;
-    border: none;
-    box-shadow: none;
+    padding: 10px;
+  }
+
+  #menu-toggle:checked + .menu-icon + .menu {
+    display: flex;
   }
 
   .menu li {
-    padding: 8px 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .descripcion {
+    font-size: 18px;
+    padding: 30px;
   }
 }
 
 @media (max-width: 480px) {
   .titulo {
     font-size: 28px;
+    padding: 10px;
   }
 
   .descripcion {
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px;
   }
 
   footer {
-    font-size: 18px;
-    padding: 15px;
-  }
-
-  .menu-icon {
-    font-size: 26px;
+    font-size: 16px;
   }
 }
