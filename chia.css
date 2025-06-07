@@ -19,7 +19,7 @@ header {
   padding: 20px;
   flex-wrap: wrap;
   background-color: #ffffff;
-  position: relative; /* ← Añadido para que el navbar se posicione respecto a header */
+  position: relative;
 }
 
 .logo img {
@@ -41,21 +41,38 @@ header {
   position: relative;
 }
 
-.menu-icon {
-  font-size: 30px;
-  cursor: pointer;
-  display: block;
-  user-select: none;
-  padding: 10px;
-  background-color: #00A8E8;
-  color: white;
-  border-radius: 8px;
-}
-
 #menu-toggle {
   display: none;
 }
 
+/* Mostrar siempre el ícono */
+.menu-icon {
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 16px;
+  background-color: #00A8E8;
+  color: white;
+  border-radius: 8px;
+  display: block;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+/* Icono ☰ por defecto */
+.menu-icon::before {
+  content: "\2630"; /* ☰ */
+  font-size: 30px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Icono ✖ cuando el menú está abierto */
+#menu-toggle:checked + .menu-icon::before {
+  content: "\2715"; /* ✖ */
+}
+
+/* Menú desplegable */
 .menu {
   display: none;
   position: absolute;
@@ -64,24 +81,38 @@ header {
   background: white;
   border: 1px solid #00A8E8;
   list-style: none;
-  padding: 10px;
-  width: 90px;
+  padding: 0;
+  width: 150px;
   z-index: 90;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
 
+/* Mostrar menú cuando checkbox está activo */
+#menu-toggle:checked + .menu-icon + .menu {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  padding: 10px;
 }
 
 .menu li {
-  padding: 5px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.menu li:last-child {
+  border-bottom: none;
 }
 
 .menu a {
   text-decoration: none;
   color: #2C3E50;
+  font-weight: bold;
 }
 
-#menu-toggle:checked + .menu-icon + .menu {
-  display: block;
-}
+/* Contenido */
 .container {
   max-width: 1200px;
   margin: auto;
@@ -104,6 +135,7 @@ header {
   text-align: center;
   border: 2px solid #0400fe;
 }
+
 .box1 img {
   background-color: #f2f2f2;
   padding: 20px;
@@ -114,6 +146,7 @@ header {
   text-align: center;
   border: 1px solid #000000;
 }
+
 .box2 img {
   background-color: #f2f2f2;
   padding: 20px;
@@ -125,7 +158,6 @@ header {
   border: 1px solid #000000;
 }
 
-
 .full-width {
   width: 100%;
 }
@@ -135,6 +167,7 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
 }
+
 footer {
   text-align: center;
   margin: 20px;
@@ -145,8 +178,21 @@ footer {
   border-top: 4px solid #00A8E8;
   border-radius: 10px;
 }
+
+/* Adaptar layout a pantallas pequeñas */
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
+  }
+
+  .menu {
+    width: 100%;
+    top: 70px;
+    right: 0;
+  }
+
+  .navbar {
+    width: 100%;
+    text-align: right;
   }
 }
