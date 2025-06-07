@@ -19,6 +19,7 @@ header {
   padding: 20px;
   flex-wrap: wrap;
   background-color: #ffffff;
+  position: relative; /* Para que navbar se posicione respecto a header */
 }
 
 .logo img {
@@ -40,6 +41,12 @@ header {
   position: relative;
 }
 
+/* Checkbox oculto para toggle del menú */
+#menu-toggle {
+  display: none;
+}
+
+/* Icono de menú siempre visible */
 .menu-icon {
   font-size: 30px;
   cursor: pointer;
@@ -49,12 +56,25 @@ header {
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
+  position: relative;
+  z-index: 110;
+  width: fit-content;
 }
 
-#menu-toggle {
-  display: none;
+/* Icono ☰ por defecto */
+.menu-icon::before {
+  content: "\2630"; /* ☰ */
+  font-size: 30px;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
+/* Icono ✖ cuando el menú está abierto */
+#menu-toggle:checked + .menu-icon::before {
+  content: "\2715"; /* ✖ */
+}
+
+/* Estilos del menú desplegable */
 .menu {
   display: none;
   position: absolute;
@@ -63,22 +83,35 @@ header {
   background: white;
   border: 1px solid #00A8E8;
   list-style: none;
-  padding: 10px;
+  padding: 0;
   width: 150px;
   z-index: 100;
+  border-radius: 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  flex-direction: column;
+}
+
+/* Mostrar menú cuando está activo */
+#menu-toggle:checked + .menu-icon + .menu {
+  display: flex;
+  max-height: 500px;
+  padding: 10px;
 }
 
 .menu li {
   padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.menu li:last-child {
+  border-bottom: none;
 }
 
 .menu a {
   text-decoration: none;
   color: #2C3E50;
-}
-
-#menu-toggle:checked + .menu-icon + .menu {
-  display: block;
 }
 
 /* Contenido principal */
@@ -103,4 +136,13 @@ footer {
   font-size: 30px;
   border-top: 4px solid #00A8E8;
   border-radius: 10px;
+}
+
+/* 🔧 Menú al lado derecho en celulares */
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }
