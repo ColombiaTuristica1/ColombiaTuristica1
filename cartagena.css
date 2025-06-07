@@ -47,6 +47,12 @@ header {
   position: relative;
 }
 
+/* Checkbox oculto para toggle del menú */
+#menu-toggle {
+  display: none;
+}
+
+/* Icono de menú siempre visible */
 .menu-icon {
   font-size: 30px;
   cursor: pointer;
@@ -56,12 +62,25 @@ header {
   background-color: #00A8E8;
   color: white;
   border-radius: 8px;
+  position: relative;
+  z-index: 110;
+  width: fit-content;
 }
 
-#menu-toggle {
-  display: none;
+/* Icono ☰ por defecto */
+.menu-icon::before {
+  content: "\2630"; /* ☰ */
+  font-size: 30px;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
+/* Icono ✖ cuando el menú está abierto */
+#menu-toggle:checked + .menu-icon::before {
+  content: "\2715"; /* ✖ */
+}
+
+/* Estilos del menú desplegable */
 .menu {
   display: none;
   position: absolute;
@@ -70,22 +89,35 @@ header {
   background: white;
   border: 1px solid #00A8E8;
   list-style: none;
-  padding: 10px;
+  padding: 0;
   width: 150px;
   z-index: 100;
+  border-radius: 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  flex-direction: column;
+}
+
+/* Mostrar menú cuando está activo */
+#menu-toggle:checked + .menu-icon + .menu {
+  display: flex;
+  max-height: 500px;
+  padding: 10px;
 }
 
 .menu li {
   padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.menu li:last-child {
+  border-bottom: none;
 }
 
 .menu a {
   text-decoration: none;
   color: #2C3E50;
-}
-
-#menu-toggle:checked + .menu-icon + .menu {
-  display: block;
 }
 
 /* Secciones del contenido principal */
@@ -111,6 +143,7 @@ header {
   height: 500px;
   min-height: 100px;
 }
+
 .box1 {
   border: 2px solid #00A8E8;
   padding: 20px;
@@ -127,6 +160,7 @@ iframe {
   min-height: 100px;
   border: 2px solid #2ECC71;
 }
+
 .video-container {
   position: relative;
   width: 100%;
@@ -142,7 +176,6 @@ iframe {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 /* Estilo de grillas */
 .grid-3 {
@@ -194,4 +227,23 @@ footer {
   font-style: italic;
   background-color: #2C3E50;
   color: white;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu {
+    width: 100%;
+    top: 70px;
+    right: 0;
+  }
+
+  .navbar {
+    width: 100%;
+    text-align: right;
+  }
 }
